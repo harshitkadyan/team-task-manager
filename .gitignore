@@ -1,0 +1,8 @@
+node_modules/
+.env
+.railway/
+.tools/
+npm-debug.log*
+.data/
+*.sqlite
+*.log

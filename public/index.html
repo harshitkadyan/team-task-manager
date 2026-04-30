@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Team Task Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-glow page-glow-left"></div>
+    <div class="page-glow page-glow-right"></div>
+
+    <main class="shell">
+      <section id="auth-view" class="auth-layout">
+        <div class="auth-copy panel">
+          <p class="eyebrow">Team Task Manager</p>
+          <h1>Project ownership, task tracking, and delivery visibility in one workspace.</h1>
+          <p class="lead">
+            Create projects, assign team members, track task progress, and monitor overdue work
+            with clear Admin and Member access.
+          </p>
+
+          <div class="feature-stack">
+            <article class="feature-card">
+              <span class="feature-icon">01</span>
+              <div>
+                <h3>Role-based control</h3>
+                <p>Admins manage projects and assignments. Members update progress on owned tasks.</p>
+              </div>
+            </article>
+            <article class="feature-card">
+              <span class="feature-icon">02</span>
+              <div>
+                <h3>Project visibility</h3>
+                <p>Review workload, deadlines, task counts, and completion trends from one view.</p>
+              </div>
+            </article>
+            <article class="feature-card">
+              <span class="feature-icon">03</span>
+              <div>
+                <h3>SQL-backed workflow</h3>
+                <p>Structured data, validations, task ownership, and REST APIs ready for deployment.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <section class="auth-panel panel">
+          <div>
+            <p class="eyebrow">Secure Access</p>
+            <h2 id="auth-heading">Create your workspace account</h2>
+            <p class="subtle" id="auth-subheading">The first registered account becomes Admin automatically.</p>
+          </div>
+
+          <form id="auth-form" class="form-stack">
+            <div class="input-group" id="name-row">
+              <label for="name">Full Name</label>
+              <input id="name" name="name" type="text" placeholder="Aarav Sharma" required />
+            </div>
+
+            <div class="input-group">
+              <label for="email">Email Address</label>
+              <input id="email" name="email" type="email" placeholder="aarav@company.com" required />
+            </div>
+
+            <div class="input-group">
+              <label for="password">Password</label>
+              <input id="password" name="password" type="password" placeholder="Minimum 6 characters" required />
+            </div>
+
+            <button id="auth-submit" type="submit" class="btn btn-primary">Create account</button>
+            <button id="auth-toggle" type="button" class="btn btn-secondary">Already have an account? Login</button>
+          </form>
+        </section>
+      </section>
+
+      <section id="app-view" class="hidden app-layout">
+        <header class="workspace-hero panel">
+          <div>
+            <p class="eyebrow">Operational Dashboard</p>
+            <h2 id="welcome-text">Welcome</h2>
+            <p class="subtle" id="hero-subtitle">
+              Review team execution across projects, ownership, deadlines, and task progress.
+            </p>
+          </div>
+
+          <div class="hero-actions">
+            <span id="role-badge" class="badge"></span>
+            <button id="logout-btn" class="btn btn-secondary">Logout</button>
+          </div>
+        </header>
+
+        <section id="stats-grid" class="stats-grid"></section>
+
+        <section class="workspace-grid">
+          <aside class="panel sidebar-panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Portfolio</p>
+                <h3>Projects</h3>
+              </div>
+              <button id="new-project-btn" class="btn btn-primary hidden">New Project</button>
+            </div>
+            <div id="projects-list" class="project-list"></div>
+          </aside>
+
+          <section class="panel detail-panel">
+            <div class="detail-header">
+              <div>
+                <p class="eyebrow">Selected Project</p>
+                <h3 id="project-title">Select a project</h3>
+                <p id="project-description" class="subtle">
+                  Choose any project to review members, progress, and tasks.
+                </p>
+              </div>
+              <div class="detail-actions">
+                <button id="add-member-btn" class="btn btn-secondary hidden">Add Member</button>
+                <button id="new-task-btn" class="btn btn-primary hidden">Create Task</button>
+              </div>
+            </div>
+
+            <div id="project-summary" class="project-summary"></div>
+
+            <div class="two-col">
+              <div>
+                <div class="section-heading">
+                  <h4>Team Members</h4>
+                </div>
+                <div id="project-members" class="stack-list compact"></div>
+              </div>
+              <div>
+                <div class="section-heading">
+                  <h4>Project Tasks</h4>
+                </div>
+                <div id="project-tasks" class="stack-list"></div>
+              </div>
+            </div>
+          </section>
+
+          <aside class="panel focus-panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Execution View</p>
+                <h3>My Tasks</h3>
+              </div>
+            </div>
+            <div id="my-tasks" class="stack-list"></div>
+          </aside>
+        </section>
+      </section>
+    </main>
+
+    <dialog id="modal" class="modal">
+      <form id="modal-form" method="dialog" class="form-stack">
+        <div class="section-heading">
+          <h3 id="modal-title"></h3>
+          <button type="button" id="close-modal" class="btn btn-secondary">Close</button>
+        </div>
+        <div id="modal-fields" class="form-stack"></div>
+        <button type="submit" id="modal-submit" class="btn btn-primary">Save</button>
+      </form>
+    </dialog>
+
+    <div id="toast" class="toast hidden"></div>
+    <script src="./app.js"></script>
+  </body>
+</html>
