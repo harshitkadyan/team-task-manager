@@ -67,7 +67,7 @@ If `DATABASE_URL` is not set, the app uses a local SQL database file for develop
    - `PORT` is optional because Railway provides it automatically
 5. Deploy the repo.
 
-Railway uses `npm start`, which is already configured in [railway.json](/C:/Users/hkady/OneDrive/Desktop/Team_Task_Manager/railway.json).
+Railway uses `npm start`, which is already configured in [railway.json](./railway.json).
 
 ## Role Rules
 
