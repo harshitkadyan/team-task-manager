@@ -2,6 +2,12 @@
 
 Full-stack Team Task Manager with a static frontend, Node.js/Express API, PostgreSQL database, JWT auth, and role-based Admin/Member access.
 
+## Live Deployment
+
+- Frontend: https://team-task-manager-frontend-hazel.vercel.app
+- Backend health check: https://team-task-manager-api-0z40.onrender.com/api/health
+- Database: Neon Postgres project `team-task-manager`
+
 ## Free Deployment Plan
 
 - Frontend: Vercel Hobby, static hosting from `public/`
