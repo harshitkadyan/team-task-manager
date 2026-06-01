@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const { z } = require("zod");
-const { port, publicDir } = require("./config");
+const { port, publicDir, corsOrigins } = require("./config");
 const {
   initDatabase,
   countUsers,
@@ -60,6 +60,27 @@ const taskUpdateSchema = z.object({
   status: z.enum(["TODO", "IN_PROGRESS", "COMPLETED"]).optional(),
   priority: z.enum(["LOW", "MEDIUM", "HIGH"]).optional(),
   dueDate: z.string().datetime().nullable().optional()
+});
+
+app.use((req, res, next) => {
+  const origin = req.get("origin");
+  const allowAnyOrigin = corsOrigins.length === 0;
+
+  if (allowAnyOrigin) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+  } else if (origin && corsOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+    res.setHeader("Vary", "Origin");
+  }
+
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, OPTIONS");
+
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(204);
+  }
+
+  return next();
 });
 
 app.use(express.json());
@@ -177,6 +198,10 @@ app.get("/api/auth/me", requireAuth, asyncHandler(async (req, res) => {
   }
   return res.json({ user: toUser(user) });
 }));
+
+app.get("/api/health", (_req, res) => {
+  res.json({ ok: true });
+});
 
 app.get("/api/users", requireAuth, requireAdmin, asyncHandler(async (_req, res) => {
   const users = await listUsers();

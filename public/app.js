@@ -9,6 +9,8 @@ const state = {
   activeProject: null
 };
 
+const API_BASE_URL = (window.TTM_API_BASE_URL || "").replace(/\/$/, "");
+
 const authView = document.getElementById("auth-view");
 const appView = document.getElementById("app-view");
 const authForm = document.getElementById("auth-form");
@@ -71,7 +73,7 @@ async function api(path, options = {}) {
     headers.Authorization = `Bearer ${state.token}`;
   }
 
-  const response = await fetch(path, { ...options, headers });
+  const response = await fetch(`${API_BASE_URL}${path}`, { ...options, headers });
   const data = await response.json().catch(() => ({}));
 
   if (!response.ok) {

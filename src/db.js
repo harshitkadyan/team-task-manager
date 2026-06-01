@@ -101,10 +101,11 @@ function sqliteRun(statement, params = []) {
 async function initDatabase() {
   if (databaseUrl) {
     dialect = "postgres";
-    const isRailway = databaseUrl.includes("railway.app") || !!process.env.RAILWAY_ENVIRONMENT;
+    const isLocalDatabase = /@(localhost|127\.0\.0\.1)(:\d+)?\//.test(databaseUrl);
+    const shouldUseSsl = process.env.DB_SSL === "true" || (!isLocalDatabase && process.env.DB_SSL !== "false");
     pgPool = new Pool({
       connectionString: databaseUrl,
-      ssl: isRailway ? { rejectUnauthorized: false } : false
+      ssl: shouldUseSsl ? { rejectUnauthorized: false } : false
     });
 
     await pgPool.query(`

@@ -1,7 +1,7 @@
 ======================================================
 TEAM TASK MANAGER
 ======================================================
-Live Demo: https://team-task-manager-production-7d4f.up.railway.app/
+Live Demo: Add the new Vercel frontend URL after redeployment.
 
 OVERVIEW
 --------
@@ -46,9 +46,14 @@ The application is designed to run seamlessly out of the box with zero database 
    
    Note: The application will automatically initialize the database schema and required tables on startup.
 
-DEPLOYMENT DETAILS (RAILWAY)
-----------------------------
-This application is fully production-ready. It is currently deployed on Railway with a managed PostgreSQL database. Environment variables are securely managed within the Railway dashboard, and deployment is automated via railway.json.
+DEPLOYMENT DETAILS
+------------------
+Recommended free deployment:
+- Frontend: Vercel
+- Backend: Render Free Web Service
+- Database: Neon Free Postgres
+
+Use Neon instead of Render Postgres for the free database because Render's free PostgreSQL databases expire after 30 days.
 
 TESTING INSTRUCTIONS
 --------------------

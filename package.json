@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "node src/server.js",
     "start": "node src/server.js",
+    "build:frontend": "node scripts/write-frontend-config.js",
     "check": "node --check src/server.js && node --check src/db.js && node --check src/auth.js && node --check public/app.js"
   },
   "engines": {
